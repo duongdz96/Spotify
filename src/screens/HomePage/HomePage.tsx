@@ -35,59 +35,30 @@ const HomePage = (): JSX.Element => {
   const resultContext = usePreferenceContext();
   const topInsets = useTopInset();
 
-  useFocusEffect(
-    React.useCallback(() => {
-      let backButtonPressCount = 0;
-      let backButtonPressTimer: ReturnType<typeof setTimeout> = null;
-
-      const onBackPress = () => {
-        if (backButtonPressCount === 1) {
-          ExitApp.exitApp();
-          return true;
-        } else {
-          backButtonPressCount++;
-          backButtonPressTimer = setTimeout(() => {
-            backButtonPressCount = 0;
-            clearTimeout(backButtonPressTimer);
-          }, 2000);
-          return true;
-        }
-      };
-
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      const backHandler = BackHandler.addEventListener(
-        'hardwareBackPress',
-        onBackPress,
-      );
-
-      return () => {
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-        backHandler.remove();
-      };
-    }, []),
-  );
-
   const styleContainer = useMemo<StyleProp<ViewStyle>>(
     () => [
       {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#111111',
       },
     ],
     [theme],
   );
   return (
     <SafeAreaView style={styleContainer}>
-      <Text
-        style={{
-          color: '#000000',
-          fontSize: 16,
-          textAlign: 'center',
-          fontFamily: 'SFProDisplay-Medium',
-        }}>
-        {t('HomePage')}
-      </Text>
+      <View style={{
+        flex: 1,
+        width: '100%',
+        paddingHorizontal: 24,
+        paddingTop: Platform.select({
+          ios: 0,
+          android: 70,
+        })
+      }}>
+
+      </View>
     </SafeAreaView>
   );
 };

@@ -15,6 +15,7 @@ import SettingPage from '~/screens/SettingPage/SettingPage';
 import SplashPage from '~/screens/SplashPage/SplashPage';
 import TestPage from '~/screens/TestPage';
 import WebViewPage from '~/screens/WebViewPage';
+import AuthenPage from '~/screens/Authentication/AuthenPage';
 
 import BottomTabNavigator, {
   BottomTabNavigatorProps,
@@ -33,6 +34,7 @@ export type RootNavigatorProps = {
   NotificationPage: undefined;
   SelectLanguageOnboardingPage: undefined;
   WebViewPage: { uri: string } | undefined;
+  AuthenPage: undefined;
 };
 
 export type RootNavigatorNavProps = StackNavigationProp<RootNavigatorProps>;
@@ -99,6 +101,11 @@ const RootNavigator = (): JSX.Element => {
         name='WebViewPage'
         component={WebViewPage}
         options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+         name='AuthenPage'
+         component={AuthenPage}
+         options={{gestureEnabled: false}}
       />
     </StackNavigator.Navigator>
   );

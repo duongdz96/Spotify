@@ -50,11 +50,11 @@ const SplashPage = (): JSX.Element => {
   const styleAppName = useMemo<StyleProp<TextStyle>>(
     () => [
       {
-        color: theme.colors.black,
-        marginTop: 40,
+        color: '#1ED760',
+        marginTop: 100,
         fontWeight: '700',
         fontFamily: 'SFProDisplay-Medium',
-        fontSize: 20,
+        fontSize: 35,
         textAlign: 'center',
       },
     ],
@@ -74,7 +74,7 @@ const SplashPage = (): JSX.Element => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!isFirst) {
-        navigation.navigate('SelectLanguageOnboardingPage');
+        navigation.navigate('AuthenPage');
       } else {
         navigation.navigate('BottomTabNavigator', {
           screen: 'HomeNavigator',
@@ -89,13 +89,10 @@ const SplashPage = (): JSX.Element => {
     <View style={styleContainer}>
       {/* <StatusBar translucent backgroundColor='transparent' /> */}
       <View style={styles.viewLogo}>
-        <IconLogo height={100} width={100} />
+        <IconLogo/>
         <Text style={styleAppName}>
-          {t(`Sharing location safety to \n your loved ones`)}
+          {t(`Spotify`)}
         </Text>
-      </View>
-      <View style={styles.loading}>
-        <SkypeIndicator color={'#0057E7'} size={50} />
       </View>
     </View>
   );
@@ -107,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  viewLogo: { justifyContent: 'center', alignItems: 'center' },
+  viewLogo: { justifyContent: 'center', alignItems: 'center', marginTop: 150},
   loading: { position: 'absolute', bottom: 100 },
 });
 

@@ -19,6 +19,7 @@ import usePreferenceContext from '~/hooks/usePreferenceContext';
 import getImage from '~/libs/getImage';
 
 import IconHome from '~/resources/Icons/IconBottomBar/IconHome';
+import IconHomeInvalid from '~/resources/Icons/IconBottomBar/IconHomeInvalid';
 import IconLocated from '~/resources/Icons/IconBottomBar/IconLocated';
 import IconMusic from '~/resources/Icons/IconBottomBar/IconMusic';
 import IconProfile from '~/resources/Icons/IconBottomBar/IconProfile';
@@ -34,6 +35,8 @@ import NotificationNavigator, {
 } from './NotificationNavigator';
 import ProfileNavigator, { ProfileNavigatorProps } from './ProfileNavigator';
 import { RootNavigatorProps } from './RootNavigator';
+import IconSearch from '~/resources/Icons/IconBottomBar/IconSearch';
+import IconMusicValid from '~/resources/Icons/IconBottomBar/IconMusicValid';
 
 export type BottomTabNavigatorProps = {
   HomeNavigator: NavigatorScreenParams<HomeNavigatorProps> | undefined;
@@ -124,17 +127,12 @@ const BottomTabNavigator = (): JSX.Element => {
           name='HomeNavigator'
           component={HomeNavigator}
           options={{
-            tabBarLabel: t('Locator'),
+            tabBarLabel: t('Home'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <LottieView
-                  source={getImage('homeAnimate')}
-                  autoPlay
-                  loop
-                  style={{ height: 40, width: 40 }}
-                />
+                <IconHome/>
               ) : (
-                <IconHome />
+                <IconHomeInvalid/>
               ),
           }}
         />
@@ -146,12 +144,7 @@ const BottomTabNavigator = (): JSX.Element => {
             tabBarLabel: t('Library'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <LottieView
-                  source={getImage('moon')}
-                  autoPlay
-                  loop
-                  style={{ height: 30, width: 30 }}
-                />
+                <IconSearch/>
               ) : (
                 <IconLocated />
               ),
@@ -165,33 +158,9 @@ const BottomTabNavigator = (): JSX.Element => {
             tabBarLabel: t('Notification'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <LottieView
-                  source={getImage('moon2')}
-                  autoPlay
-                  // loop
-                  style={{ height: 32, width: 32 }}
-                />
+                <IconMusicValid/>
               ) : (
                 <IconMusic />
-              ),
-          }}
-        />
-
-        <Tab.Screen
-          name='ProfileNavigator'
-          component={ProfileNavigator}
-          options={{
-            tabBarLabel: t('Profile'),
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                <LottieView
-                  source={getImage('profile')}
-                  autoPlay
-                  loop
-                  style={{ height: 30, width: 30 }}
-                />
-              ) : (
-                <IconProfile />
               ),
           }}
         />
