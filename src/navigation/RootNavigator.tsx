@@ -20,6 +20,11 @@ import AuthenPage from '~/screens/Authentication/AuthenPage';
 import BottomTabNavigator, {
   BottomTabNavigatorProps,
 } from './BottomTabNavigator';
+import Password from '~/screens/Authentication/Password';
+import Gender from '~/screens/Authentication/Gender';
+import Name from '~/screens/Authentication/Name';
+import ChooseArtist from '~/screens/Artist/ChooseArtist';
+import ChoosePodCast from '~/screens/Artist/ChoosePodcast';
 
 export type RootNavigatorProps = {
   navigate(arg0: string): unknown;
@@ -35,6 +40,11 @@ export type RootNavigatorProps = {
   SelectLanguageOnboardingPage: undefined;
   WebViewPage: { uri: string } | undefined;
   AuthenPage: undefined;
+  Password: undefined;
+  Gender: undefined;
+  Name: undefined;
+  ChooseArtist: undefined;
+  ChoosePodCast: undefined;
 };
 
 export type RootNavigatorNavProps = StackNavigationProp<RootNavigatorProps>;
@@ -103,9 +113,34 @@ const RootNavigator = (): JSX.Element => {
         options={{ gestureEnabled: false }}
       />
       <StackNavigator.Screen
-         name='AuthenPage'
-         component={AuthenPage}
-         options={{gestureEnabled: false}}
+        name='AuthenPage'
+        component={AuthenPage}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='Password'
+        component={Password}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='Gender'
+        component={Gender}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='Name'
+        component={Name}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='ChooseArtist'
+        component={ChooseArtist}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='ChoosePodCast'
+        component={ChoosePodCast}
+        options={{ gestureEnabled: false }}
       />
     </StackNavigator.Navigator>
   );

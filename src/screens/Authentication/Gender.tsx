@@ -8,6 +8,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -20,13 +21,15 @@ import IconBack from '~/resources/Icons/IconBack';
 import IconBackFirst from '~/resources/Icons/IconBackFirst';
 
 import Textarea from 'react-native-textarea'
+import IconCheck from '~/resources/Icons/IconCheck';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const SignUpPage = (): JSX.Element => {
+const Gender = (): JSX.Element => {
   const theme = useAppTheme();
   const navigation = useNavigation<RootNavigatorNavProps>();
   const [textInput, onChangeInput] = useState('');
+  const genders = ["Male", "Female", "Other"]
 
   const { t } = useTranslation();
 
@@ -77,28 +80,19 @@ const SignUpPage = (): JSX.Element => {
            <Text
              style={{fontWeight: '700', fontSize: 20, color: '#ffffff'}}
            >
-            {t('What is your email ?')}</Text>
-            <Textarea
-              containerStyle={{
-                backgroundColor: '#777777',
+            {t("What's your gender ?")}</Text>
+            <TouchableOpacity style={{
                 height: 51,
-                // width: 365,
                 borderRadius: 5,
-                padding: 5,
-              }}
-              onChangeText={(e: any) => onChangeInput(e)}
-              underlineColorAndroid={'transparent'}
-              value={textInput}
-              style={{color: '#ffffff'}}
-              placeholderTextColor={'#ffffff'}
-            />
-            <Text style={{
-              fontWeight: '600',
-              fontSize: 8,
-              color: '#ffffff',
-            }}>You'll need to confirm this email later.</Text>
-            
-            <TouchableOpacity onPress={() => navigation.navigate('Password')}
+                backgroundColor: '#777777',
+                alignItems: 'flex-end',
+                justifyContent: 'center',
+                padding: 18,
+
+            }}>
+                <IconCheck/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Name')}
             style={{
               marginTop: 62,
               paddingHorizontal: 21,
@@ -124,6 +118,6 @@ const SignUpPage = (): JSX.Element => {
   );
 };
 
-export default SignUpPage;
+export default Gender;
 
 const style = StyleSheet.create({});

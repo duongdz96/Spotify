@@ -42,8 +42,8 @@ export type BottomTabNavigatorProps = {
   HomeNavigator: NavigatorScreenParams<HomeNavigatorProps> | undefined;
   LibraryNavigator: NavigatorScreenParams<LibraryNavigatorProps> | undefined;
   NotificationNavigator:
-    | NavigatorScreenParams<NotificationNavigatorProps>
-    | undefined;
+  | NavigatorScreenParams<NotificationNavigatorProps>
+  | undefined;
   ProfileNavigator: NavigatorScreenParams<ProfileNavigatorProps> | undefined;
 };
 
@@ -130,9 +130,9 @@ const BottomTabNavigator = (): JSX.Element => {
             tabBarLabel: t('Home'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <IconHome/>
+                <IconHome />
               ) : (
-                <IconHomeInvalid/>
+                <IconHomeInvalid />
               ),
           }}
         />
@@ -141,12 +141,12 @@ const BottomTabNavigator = (): JSX.Element => {
           name='LibraryNavigator'
           component={LibraryNavigator}
           options={{
-            tabBarLabel: t('Library'),
+            tabBarLabel: t('Search'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <IconSearch/>
-              ) : (
                 <IconLocated />
+              ) : (
+                <IconSearch />
               ),
           }}
         />
@@ -158,7 +158,7 @@ const BottomTabNavigator = (): JSX.Element => {
             tabBarLabel: t('Notification'),
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <IconMusicValid/>
+                <IconMusicValid />
               ) : (
                 <IconMusic />
               ),

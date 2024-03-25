@@ -12,6 +12,12 @@ const images = {
   googleIcon: require('~/resources/images/googleIcon.png'),
   facebookIcon: require('~/resources/images/facebook.png'),
   appleIcon: require('~/resources/images/apple.png'),
+
+  avatar: require('~/resources/images/BillieEllish.jpg'),
+
+  topSong: require('~/resources/images/topsong.jpg'),
+  topSong1: require('~/resources/images/topsong1.jpg'),
+  topSong2: require('~/resources/images/topsong2.jpg'),
 };
 
 export default (imageName: keyof typeof images) => {

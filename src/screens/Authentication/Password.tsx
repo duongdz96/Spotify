@@ -8,6 +8,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -23,7 +24,7 @@ import Textarea from 'react-native-textarea'
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const SignUpPage = (): JSX.Element => {
+const Password = (): JSX.Element => {
   const theme = useAppTheme();
   const navigation = useNavigation<RootNavigatorNavProps>();
   const [textInput, onChangeInput] = useState('');
@@ -77,28 +78,28 @@ const SignUpPage = (): JSX.Element => {
            <Text
              style={{fontWeight: '700', fontSize: 20, color: '#ffffff'}}
            >
-            {t('What is your email ?')}</Text>
-            <Textarea
-              containerStyle={{
+            {t('Create a password')}</Text>
+            <TextInput
+              style={{
                 backgroundColor: '#777777',
                 height: 51,
                 // width: 365,
                 borderRadius: 5,
-                padding: 5,
+                padding: 10,
+                color: '#ffffff',
               }}
               onChangeText={(e: any) => onChangeInput(e)}
               underlineColorAndroid={'transparent'}
               value={textInput}
-              style={{color: '#ffffff'}}
-              placeholderTextColor={'#ffffff'}
+              secureTextEntry={true}
             />
             <Text style={{
               fontWeight: '600',
               fontSize: 8,
               color: '#ffffff',
-            }}>You'll need to confirm this email later.</Text>
+            }}>Use atleast 8 characters.</Text>
             
-            <TouchableOpacity onPress={() => navigation.navigate('Password')}
+            <TouchableOpacity onPress={() => navigation.navigate('Gender')}
             style={{
               marginTop: 62,
               paddingHorizontal: 21,
@@ -124,6 +125,6 @@ const SignUpPage = (): JSX.Element => {
   );
 };
 
-export default SignUpPage;
+export default Password;
 
 const style = StyleSheet.create({});

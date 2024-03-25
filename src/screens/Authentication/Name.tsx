@@ -8,6 +8,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -20,13 +21,15 @@ import IconBack from '~/resources/Icons/IconBack';
 import IconBackFirst from '~/resources/Icons/IconBackFirst';
 
 import Textarea from 'react-native-textarea'
+import IconCheck from '~/resources/Icons/IconCheck';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const SignUpPage = (): JSX.Element => {
+const Name = (): JSX.Element => {
   const theme = useAppTheme();
   const navigation = useNavigation<RootNavigatorNavProps>();
   const [textInput, onChangeInput] = useState('');
+  const genders = ["Male", "Female", "Other"]
 
   const { t } = useTranslation();
 
@@ -77,7 +80,7 @@ const SignUpPage = (): JSX.Element => {
            <Text
              style={{fontWeight: '700', fontSize: 20, color: '#ffffff'}}
            >
-            {t('What is your email ?')}</Text>
+            {t("What's your name ?")}</Text>
             <Textarea
               containerStyle={{
                 backgroundColor: '#777777',
@@ -93,30 +96,32 @@ const SignUpPage = (): JSX.Element => {
               placeholderTextColor={'#ffffff'}
             />
             <Text style={{
-              fontWeight: '600',
-              fontSize: 8,
-              color: '#ffffff',
-            }}>You'll need to confirm this email later.</Text>
-            
-            <TouchableOpacity onPress={() => navigation.navigate('Password')}
-            style={{
-              marginTop: 62,
-              paddingHorizontal: 21,
-              backgroundColor: '#535353',
-              borderRadius: 21,
-              height: 42,
-              width: 82,
-              justifyContent: 'center',
-              alignItems: 'center',
-              alignSelf: 'center'
-            }}>
-              <Text style={{
                 fontWeight: '600',
-                fontSize: 15,
-                color: '#000000'
-              }}>Next</Text>
+                fontSize: 8,
+                color: '#ffffff'
+            }}>This appears on your spotify profile</Text>
+            <View style={{
+                borderWidth: 1,
+                borderColor: '#777777',
+                marginTop: 51,
+            }}/>
+            <TouchableOpacity onPress={() => navigation.navigate('ChooseArtist')}
+            style={{
+                width: 179,
+                height: 42,
+                borderRadius: 21,
+                backgroundColor: '#F5F5F5',
+                alignSelf: 'center',
+                marginTop: 550,
+                justifyContent: 'center'
+            }}>
+                <Text style={{
+                    fontWeight: '600',
+                    fontSize: 15,
+                    textAlign: 'center',
+                    color: '#000000'
+                }}>Create an account</Text>
             </TouchableOpacity>
-            
          </View>
         </>
       </View>
@@ -124,6 +129,6 @@ const SignUpPage = (): JSX.Element => {
   );
 };
 
-export default SignUpPage;
+export default Name;
 
 const style = StyleSheet.create({});
