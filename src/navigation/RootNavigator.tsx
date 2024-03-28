@@ -25,6 +25,7 @@ import Gender from '~/screens/Authentication/Gender';
 import Name from '~/screens/Authentication/Name';
 import ChooseArtist from '~/screens/Artist/ChooseArtist';
 import ChoosePodCast from '~/screens/Artist/ChoosePodcast';
+import SearchPage from '~/screens/LibraryPage/SearchPage';
 
 export type RootNavigatorProps = {
   navigate(arg0: string): unknown;
@@ -45,6 +46,7 @@ export type RootNavigatorProps = {
   Name: undefined;
   ChooseArtist: undefined;
   ChoosePodCast: undefined;
+  SearchPage: undefined;
 };
 
 export type RootNavigatorNavProps = StackNavigationProp<RootNavigatorProps>;
@@ -140,6 +142,11 @@ const RootNavigator = (): JSX.Element => {
       <StackNavigator.Screen
         name='ChoosePodCast'
         component={ChoosePodCast}
+        options={{ gestureEnabled: false }}
+      />
+      <StackNavigator.Screen
+        name='SearchPage'
+        component={SearchPage}
         options={{ gestureEnabled: false }}
       />
     </StackNavigator.Navigator>

@@ -24,10 +24,10 @@ import usePreferenceContext from '~/hooks/usePreferenceContext';
 import { useAppTheme } from '~/resources/theme';
 
 import { RootNavigatorNavProps } from '~/navigation/RootNavigator';
+import IconBackFirst from '~/resources/Icons/IconBackFirst';
 
 import Textarea from 'react-native-textarea'
 import IconSearch from '~/resources/Icons/IconBottomBar/IconSearch';
-import { FlatList } from 'react-native-gesture-handler';
 import getImage from '~/libs/getImage';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -41,56 +41,18 @@ const LibraryPage = (): JSX.Element => {
   const resultContext = usePreferenceContext();
   const topInsets = useTopInset();
   const [search, setSearch] = useState('');
+  // const imageSource = getImage('avatar');
+  const imageDataTop = [
+    { des: 'Your top genres', image1: getImage('popMusic'), image2: getImage('indieMusic') },
+  ];
 
-  const dataReview = [
-    { image: getImage('topSong'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong1'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong2'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong1'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong2'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong1'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong2'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong1'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong2'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong1'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
-    { image: getImage('topSong2'), hasTag: '#SPOTIFYWRAPPED', des: 'Your 2021 in review' },
+  const podcasts = [
+    { des: 'Popular podcast categories', image1: getImage('popMusic'), image2: getImage('indieMusic') },
   ]
 
-  useFocusEffect(
-    React.useCallback(() => {
-      let backButtonPressCount = 0;
-      let backButtonPressTimer: ReturnType<typeof setTimeout> = null;
-
-      const onBackPress = () => {
-        if (backButtonPressCount === 1) {
-          ExitApp.exitApp();
-          return true;
-        } else {
-          backButtonPressCount++;
-          backButtonPressTimer = setTimeout(() => {
-            backButtonPressCount = 0;
-            clearTimeout(backButtonPressTimer);
-          }, 2000);
-          return true;
-        }
-      };
-
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      const backHandler = BackHandler.addEventListener(
-        'hardwareBackPress',
-        onBackPress,
-      );
-
-      return () => {
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-        backHandler.remove();
-      };
-    }, []),
-  );
+  const browser = [
+    { des: 'Browser', image1: getImage('popMusic'), image2: getImage('indieMusic'), image3: getImage('popMusic'), image4: getImage('indieMusic') },
+  ]
 
   const styleContainer = useMemo<StyleProp<ViewStyle>>(
     () => [
@@ -108,92 +70,159 @@ const LibraryPage = (): JSX.Element => {
       <View style={{
         flex: 1,
         width: '100%',
-        paddingHorizontal: 17,
+        paddingHorizontal: 18,
         paddingTop: Platform.select({
           ios: 0,
-          android: 58,
+          android: 81,
         })
       }}>
         <View style={{
           flexDirection: 'row',
+          position: 'relative',
+          paddingBottom: 10,
         }}>
-          <View style={{
-            flexDirection: 'row',
-            backgroundColor: '#282828',
-            height: 35,
-            width: '80%',
-            paddingHorizontal: 10,
-            borderRadius: 10,
-            alignItems: 'center',
-            borderWidth: 1,
-            borderColor: '#282828',
-          }}>
-            <IconSearch />
-            <Textarea
-              containerStyle={{
-                backgroundColor: '#282828',
-                height: 35,
-                paddingHorizontal: 9,
-                borderRadius: 10,
-                width: 236,
-                justifyContent: 'center',
-              }}
-              onChangeText={(e: any) => setSearch(e)}
-              underlineColorAndroid={'transparent'}
-              value={search}
-              placeholder={'Search'}
-              placeholderTextColor={'#ffffff'}
-              style={{ color: '#ffffff' }}
-            />
-          </View>
-          <TouchableOpacity style={{
-            paddingHorizontal: 20,
-            paddingVertical: 5,
-          }}>
-            <Text style={{
-              fontSize: 15,
-              fontWeight: '500',
-              textAlign: 'center',
-              color: '#ffffff',
-            }}>Cancel</Text>
-          </TouchableOpacity>
+          <Text style={{
+            fontSize: 25,
+            fontWeight: '700',
+            color: '#ffffff',
+          }}>Search</Text>
         </View>
         <>
-          <ScrollView contentContainerStyle={{
-            paddingVertical: 33,
-          }}
-            showsVerticalScrollIndicator={false}>
-            <Text style={{
-              fontWeight: '600',
-              fontSize: 17,
-              color: '#ffffff',
-            }}>Recent Searches</Text>
-            <>
-              <FlatList
-                data={dataReview}
-                renderItem={({ item }) => (
-                  <TouchableOpacity style={{ paddingVertical: 20, }} activeOpacity={1}>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Image source={item.image} style={{ height: 60, width: 60, borderRadius: 75 }} />
-                      <View style={{
-                        padding: 10,
-                      }}>
-                        <Text style={{
-                          color: '#ffffff',
-                          fontSize: 15,
-                          fontWeight: '500'
-                        }}>{item.hasTag}</Text>
-                        <Text style={{
-                          color: '#B3B3B3',
-                          fontSize: 13,
-                          fontWeight: '500'
-                        }}>{item.des}</Text>
-                      </View>
-                    </View>
+          <ScrollView>
+            <View style={{
+              width: '100%',
+              marginBottom: 25,
+              paddingHorizontal: 3,
+              paddingVertical: 8,
+            }}>
+              <TouchableOpacity style={{
+                flexDirection: 'row',
+                width: '100%',
+                height: 46,
+                backgroundColor: '#ffffff',
+                borderRadius: 7,
+                alignItems: 'center',
+                paddingHorizontal: 15,
+              }}
+                activeOpacity={1}
+                onPress={() => navigation.navigate('SearchPage')}
+              >
+                <IconSearch style={{ marginRight: 11, }} />
+                <Text style={{
+                  color: '#131313',
+                  fontSize: 16,
+                }}>Artists, songs, or podcasts</Text>
+              </TouchableOpacity>
+            </View>
+            {imageDataTop.map((item, index) => (
+              <View key={index} >
+                <View style={{
+                  height: 22,
+                  width: 127,
+                  marginBottom: 4,
+                }}>
+                  <Text style={{
+                    fontSize: 16,
+                    fontWeight: '600',
+                    color: '#ffffff',
+                  }}>{item.des}</Text>
+                </View>
+                <View style={{
+                  width: '100%',
+                  height: 138,
+                  flexDirection: 'row',
+                  paddingVertical: 15,
+                  justifyContent: 'space-between',
+                  marginBottom: 23,
+                  // paddingHorizontal: 17,
+                }}>
+                  <TouchableOpacity style={{ flex: 1, marginRight: 6.5, }}>
+                    <Image source={item.image1} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
                   </TouchableOpacity>
-                )}
-              />
-            </>
+                  <TouchableOpacity style={{ flex: 1, marginLeft: 6.5 }}>
+                    <Image source={item.image2} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+            {podcasts.map((item, index) => (
+              <View key={index}>
+                <View style={{
+                  height: 22,
+                  width: 127,
+                  marginBottom: 4,
+                }}>
+                  <Text style={{
+                    fontSize: 16,
+                    fontWeight: '600',
+                    color: '#ffffff',
+                  }}>{item.des}</Text>
+                </View>
+                <View style={{
+                  width: '100%',
+                  height: 138,
+                  flexDirection: 'row',
+                  paddingVertical: 15,
+                  justifyContent: 'space-between',
+                  marginBottom: 23,
+                }}>
+                  <TouchableOpacity style={{ flex: 1, marginRight: 6.5, }}>
+                    <Image source={item.image1} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{ flex: 1, marginLeft: 6.5 }}>
+                    <Image source={item.image2} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ))}
+            {browser.map((item, index) => (
+              <View key={index}>
+                <View style={{
+                  height: 22,
+                  width: 127,
+                  marginBottom: 4,
+                }}>
+                  <Text style={{
+                    fontSize: 16,
+                    fontWeight: '600',
+                    color: '#ffffff',
+                  }}>{item.des}</Text>
+                </View>
+                <View style={{
+                  marginBottom: 23,
+                  height: 276,
+                  paddingVertical: 15
+                }}>
+                  <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    height: 109,
+                    // paddingVertical: 15,
+                    marginBottom: 11,
+                  }}>
+                    <TouchableOpacity style={{ marginRight: 6.5, flex: 1 }}>
+                      <Image source={item.image1} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginRight: 6.5, flex: 1 }}>
+                      <Image source={item.image2} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    height: 109,
+                    // paddingVertical: 15,
+                  }}>
+                    <TouchableOpacity style={{ marginRight: 6.5, flex: 1 }}>
+                      <Image source={item.image3} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ marginRight: 6.5, flex: 1 }}>
+                      <Image source={item.image4} style={{ width: '100%', height: '100%', borderRadius: 4 }} resizeMode="cover" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            ))}
           </ScrollView>
         </>
       </View>

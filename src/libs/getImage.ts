@@ -18,6 +18,11 @@ const images = {
   topSong: require('~/resources/images/topsong.jpg'),
   topSong1: require('~/resources/images/topsong1.jpg'),
   topSong2: require('~/resources/images/topsong2.jpg'),
+
+  popMusic: require('~/resources/images/pop.png'),
+  indieMusic: require('~/resources/images/indie.png'),
+  politics: require('~/resources/images/politics.png'),
+  comedy: require('~/resources/images/comedy.png')
 };
 
 export default (imageName: keyof typeof images) => {

@@ -10,19 +10,10 @@ const IconAdd = ({
   fill,
 }: InjectedProps): JSX.Element => {
   return (
-    <Svg
-      width={width}
-      height={height}
-      style={style}
-      fill={fill}
-      viewBox='0 0 24 24'>
-      <Path
-        d='M12.5 6v12M18.5 12h-12'
-        stroke={fill || '#fff'}
-        strokeWidth={2.5}
-        strokeLinecap='round'
-      />
+    <Svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Path fill-rule="evenodd" clip-rule="evenodd" d="M13.9286 4.17847H12.0715V12.5356H3.71436V14.3928H12.0715V22.7499H13.9286V14.3928H22.2858V12.5356H13.9286V4.17847Z" fill="#A7A7A7" />
     </Svg>
+
   );
 };
 
